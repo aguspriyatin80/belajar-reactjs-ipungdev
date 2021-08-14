@@ -1,0 +1,354 @@
+=========
+# PART 18
+=========
+- ReactJS : A Javascript Library for building user interface
+- Membangun aplikasi skala besar dengan data yang berubah dan terus berubah dari waktu ke waktu
+- UI akan berubah jika data berubah
+- React is all about components
+
+KELEBIHAN :
+1. Mudah dipahami
+2. JSX
+3. Modular (reusable)
+4. Scalable
+5. Flexible (cross platform)
+6. Efisien dan cepat
+7. Mudah Debugging
+8. SEO Bagus
+
+KEKURANGAN :
+1. Hanya View Layer (custom sendiri)
+2. Dokumentasi tidak bagus
+3. Permasalahan license
+4. Dukungan browser
+
+JSX :
+JSX digunakan di dalam ReactJS untuk mengekspresikan (markup yang mirip dengan HTML) di dalam Javascript.
+React tidak mengharuskan kita menggunakan JSX, tapi kebanyakan developer merasa sangat terbantu dengannya
+ketika menyusun tampilan antarmuka (UI) di dalam kode Javascript.
+
+Perbedaan kode jika menggunakan JSX dengan Pure Javascript :
+
+Pure Javascript
+ReactDOM.render(
+  React.createElement('h1',null,'Hello, World!')
+  document.getElementById('root')	
+)
+
+JSX
+ReactDOM.render(
+  <h1>Hello, World!</h1>
+  document.getElementById('root')	
+)
+
+
+INSTALASI :
+> npm install -g create-react-app
+> create-react-app --version
+> create-react-app namaaplikasi
+> cd namaaplikasi
+> npm start
+
+=========
+# PART 19
+=========
+REQUIREMENTS:
+- nodeJS : nodejs.org
+- iTerm2 (mac), command prompt (windows), linux
+- code editor : VS Code / lainnya
+
+=========
+# PART 20
+=========
+INSTALASI :
+- npm uninstall -g create-react-app # (untuk menghapus versi sebelumnya)
+- npm install -g create-react-app
+pindah ke folder dimana aplikasi akan disimpan, misalnya 
+> cd code
+# instalasi aplikasi react
+> npx create-react-app aplikasipertama
+# setelah instalasi selesai, masuk ke direktori aplikasi yang sudah kita buat, seperti :
+> cd aplikasipertama
+> npm start
+# jika berhasil, akan membuka browser dengan url : localhost:3000 dan menampilkan logo React
+
+=========
+# PART 21
+=========
+MEMBUKA APLIKASI DI CODE EDITOR
+Membuka folder aplikasi yang kita buat di VS Code, dengan cara masuk ke folder aplikasipertama, kemudian ketik perintah:
+> code .
+# buat folder baru di dalam folder src dengan nama Component
+# buat folder Class dan Fungsional di dalam folder Component
+# buat file baru dengan nama Home.jsx di dalam folder Fungsional, dengan script berikut:
+
+import React from 'react'; // membaca react dari package.json
+
+const Home = () => { // membuat komponen dengan nama Home sesuaikan dengan nama filenya
+  return <div><h1>Hello World!</h1></div>  
+}
+
+export default Home;	
+
+# edit file App.js menjadi seperti berikut:
+import React from 'react'
+import logo from './logo/svg' // jika ada error tambahkan ini di atas baris ini // eslint-disable-next-line
+import './App.css'
+import Home from './Component/Fungsional/Home'
+
+function App() {
+  return (
+    <div className="App">
+      <Home />
+      <Home /> // kita bisa menampilkan banyak komponen, tetapi harus dibungkus dengan satu buah
+    </div>
+  )
+}
+
+# buat komponen baru dengan nama Beranda.jsx di dalam folder Class (menggunakan Class), dengan script berikut:
+
+import React from 'react'
+
+class Beranda extends React.Component {
+  render () {
+    return <div><h1>Ini adalah Beranda</h1></div>
+  }
+}
+
+export default Beranda;
+
+# tambahkan komponen Beranda pada file App.js, sehingga kodenya menjadi seperti berikut:
+import React from 'react'
+import logo from './logo/svg'
+import './App.css'
+import Home from './Component/Fungsional/Home'
+import Beranda from './Component/Class/Beranda'; //jangan lupa import komponen yang akan ditambahkan (gunakan auto import)
+function App() {
+  return (
+    <div className="App">
+      <Home />
+      <Beranda /> // komponen yang baru ditambahan
+    </div>
+  )
+}
+
+=========
+# PART 22
+=========
+Perbedaan Props dan State :
+PROPS
+Props (prop in plural) merupakan singkatan dari property.
+Cara penggunaannya mirip ketika menggunakan atribut pada HTML.
+
+STATE
+Merupakan data yang tersimpan di dalam sebuah component.
+State bersifat private dan hanya relevan terhadap component itu sendiri.
+Berbeda dengan props yang valuenya dilempar dari komponen lain,
+State justru dapat menyimpan dan mengubah datanya sendiri dari dalam.
+
+PRAKTEK:
+# Buat file baru di folder Fungsional dengan nama Blog.jsx, berikut kodenya:
+
+import React from 'react'
+
+const Blog = () => {
+  return <div>
+  <img src="https://placeimg.com/640/480/tech" alt=""/>
+  <p>Tanggal Blog</p>
+  <p>Judul Blog</p>
+  <p>Summary Blog</p>
+  </div>
+}
+
+export default Blog
+
+# Edit file Home.jsx menjadi seperti berikut:
+import React from 'react'
+import Blog from './Blog
+
+const Home = ()=> {
+  return <div className="blog-wrap">
+  <Blog />
+  </div>
+}
+
+export default Home;
+
+# Buat folder CSS di dalam folder Fungsional
+# Buat file Blog.css di dalam folder CSS, berikut scriptnya :
+.blog-wrap{
+  width: 300px;
+  display: inline-block;
+  height: auto;
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 10px;
+}
+
+.blog-wrap img{
+  height: 300px;
+  width: 200px;
+}
+
+# Jangan lupa import file Blog.css di Blog.jsx, dengan perintah :
+import Blog from './CSS/Blog.css';
+
+# pasang props di file Blog.jsx, sehingga menjadi :
+import React from 'react'
+import Blog from './CSS/Blog.css';
+
+const Blog = (props) => {
+  return <div  className="blog-wrap">
+  <img src="https://placeimg.com/640/480/tech" alt=""/>
+  <p>Tanggal Blog</p>
+  <p>Judul Blog</p>
+  <p>Summary Blog</p>
+  </div>
+}
+
+export defalt Blog
+
+# edit file Home.jsx menjadi seperti berikut (menerapkan props):
+import React from 'react'
+import Blog from './Blog'
+
+const Home = ()=> {
+  return <div>
+  <Blog 
+    tanggal="1 Januari 2021"
+    judul="Belajar React"
+    summary="Javascript Library for building user interface"    	
+  />
+  <Blog 
+    tanggal="2 Januari 2021"
+    judul="Belajar NodeJS"
+    summary="Javascript Runtime from server side"    	
+  />
+  </div>
+}
+
+export default Home;
+
+# Edit file Blog.jsx menjadi seperti berikut:
+import React from 'react'
+import Blog from './CSS/Blog.css';
+
+const Blog = (props) => {
+  return <div  className="blog-wrap">
+  <img src="https://placeimg.com/640/480/tech" alt="">
+  <p>{props.tanggal}</p>
+  <p>{props.judul}</p>
+  <p>{props.summary}</p>
+  </div>
+}
+
+export defalt Blog
+
+=========
+# PART 23
+=========
+STATE
+- Dapat dimodifikasi oleh aktivitas user atau perubahan data dari network
+- Setiap data state berubah, maka React akan merender ulang komponen nya
+- Objek state harus dibuat dengan constructor default
+- Objek state dapat menyimpan multi properti data
+- this.setState() merupakan fungsi untuk merubah data state
+- setState() digunakan untuk menggabungkan (merger) data state antara state sebelum dan sesudahnya
+
+
+Perbedaan Props dan State :
+PROPS
+- Props digunakan untuk passing data dan event handler terhadap child component
+- Props bersifat immutable (tidak dapat diubah) hanya menerima
+- Props dapat digunakan di stateful dan stateless component
+- Props diset oleh Parent Component untuk Child Component
+
+STATE
+- State digunakan untuk menyimpan data dari komponen yang dirender ke view
+- State dapat memegang data dan dapat berubah sewaktu-waktu
+- State hanya dapat digunakan pada class component (Note: setelah adanya hooks bisa di stateless)
+- State biasanya berubah datanya oleh event handler (Button Click dsb)
+
+PRAKTEK
+
+# Buat file baru dengan nama Produk.jsx di dalam folder Component\Class, berikut kodenya:
+import React, {Component} from 'react';
+import Produk from './CSS/Produk.css/';
+
+class Produk extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      stock: this.props.stock,
+      sub: "Beli",
+      status: "Tersedia",
+      disabled: false
+    }
+   
+   const ButtonBeli = ()=> {
+	this.setState({
+	  stock: this.state.stock - 1;
+        })
+        if(this.state.stock === 1) {
+          this.setState({
+	    status: "Habis",
+	    disabled: true
+	  })
+	}
+    }
+}
+    render() {
+      return (
+        <div className="box-stock">
+	  <h2>{this.props.nama}</h2>
+	  <img src="google.com">
+          <p><b>{this.props.harga}</b></p>
+          <p>{this.state.stock}</p> 
+	  <button className="btn-click" onClick={this.ButtonBeli} disabled={this.state.disabled}>Beli</button>  
+          <p>{this.state.status}</p>   
+	</div>
+      )
+    }
+}
+
+# Edit file Home.jsx, sehingga menjadi berikut:
+import React from  'react';
+import Produk from '../Class/Produk';
+
+const Home = ()=> {
+  return <div>
+    <Produk nama="Macbook Pro 2020" stock="10" harga="33000000" />
+    <Produk nama="Macbook Pro 2021" stock="20" harga="34000000" />
+    <Produk nama="Macbook Pro 2019" stock="5" harga="32000000" />
+  </div>
+}
+
+export default Home;
+
+# Buat file Produk.css di folder Component/Class/CSS, berikut kodenya:
+.box-stock{
+  width: 300px;
+  display: inline-block;
+  height: auto;
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 10px;
+}
+
+.box-stock img{
+  height: 300px;
+  width: 200px;
+}
+
+.btn-click {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 100px;
+}
+
+=========
+# PART 24
+=========
+# Buat file Parent.jsx di dalam folder Component/Class
