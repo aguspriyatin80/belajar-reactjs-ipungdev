@@ -1,5 +1,5 @@
 =========
-# PART 18
+# PART 18 : BERKENALAN DENGAN REACTJS
 =========
 - ReactJS : A Javascript Library for building user interface
 - Membangun aplikasi skala besar dengan data yang berubah dan terus berubah dari waktu ke waktu
@@ -50,7 +50,7 @@ INSTALASI :
 > npm start
 
 =========
-# PART 19
+# PART 19 : KEBUTUHAN DEVELOPMENT REACT.JS
 =========
 REQUIREMENTS:
 - nodeJS : nodejs.org
@@ -58,7 +58,7 @@ REQUIREMENTS:
 - code editor : VS Code / lainnya
 
 =========
-# PART 20
+# PART 20 : INSTALASI REACT.JS 
 =========
 INSTALASI :
 - npm uninstall -g create-react-app # (untuk menghapus versi sebelumnya)
@@ -73,7 +73,7 @@ pindah ke folder dimana aplikasi akan disimpan, misalnya
 # jika berhasil, akan membuka browser dengan url : localhost:3000 dan menampilkan logo React
 
 =========
-# PART 21
+# PART 21 : COMPONENT REACT.JS
 =========
 MEMBUKA APLIKASI DI CODE EDITOR
 Membuka folder aplikasi yang kita buat di VS Code, dengan cara masuk ke folder aplikasipertama, kemudian ketik perintah:
@@ -133,7 +133,7 @@ function App() {
 }
 
 =========
-# PART 22
+# PART 22 : APA ITU PROPS DI REACT.JS 
 =========
 Perbedaan Props dan State :
 PROPS
@@ -245,7 +245,7 @@ const Blog = (props) => {
 export defalt Blog
 
 =========
-# PART 23
+# PART 23 : MENGENAL STATE DI REACT.JS 
 =========
 STATE
 - Dapat dimodifikasi oleh aktivitas user atau perubahan data dari network
@@ -349,6 +349,155 @@ export default Home;
 }
 
 =========
-# PART 24
+# PART 24 : PASSING DATA ANTAR COMPONENT 
 =========
-# Buat file Parent.jsx di dalam folder Component/Class
+# Buat file Parent.jsx di dalam folder Component/Class, kodenya sbb:
+import React, { Component } from 'react';
+import Child1 from './Child1';
+import Child2 from './Child2';
+
+class Parent extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            stock: 15
+        }
+    }
+    beliProduk = (jumlah) => {
+        this.setState({
+            stock: this.state.stock - jumlah
+        })
+    }
+    render() {
+        return (
+            <div>
+                <Child1
+                    stock={this.state.stock}
+                    fungsi={this.beliProduk.bind(this)}
+                />
+                <Child2
+                    stock={this.state.stock}
+                />
+            </div>
+        );
+    }
+}
+
+
+export default Parent;
+
+# buat file Child1.jsx di Component/Class, berikut kodenya:
+import React, { Component } from 'react';
+
+class Child1 extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            
+        }
+        
+    }
+    minBeli = 1;
+    render() {
+        return (
+            <div>
+                <h2>Child 1</h2>
+                <p>Stok Produk: {this.props.stock}</p>
+                <button onClick={()=>this.props.fungsi(this.minBeli)}>Beli</button>
+            </div>
+        );
+    }
+}
+
+
+export default Child1;
+
+# buat file Child2.jsx di Component/Class, berikut kodenya:
+import React, { Component } from 'react';
+import GrandChild from './GrandChild';
+
+class Child2 extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+
+        }
+    }
+    render() {
+        return (
+            <div>
+                <h2>Child 2</h2>
+                <GrandChild data={this.props.stock}/>
+            </div>
+        );
+    }
+}
+
+export default Child2;
+
+# buat file GrandChild.jsx di Component/Class, berikut kodenya:
+import React, { Component } from 'react';
+
+class GrandChild extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+
+        }
+    }
+    render() {
+        return (
+            <div>
+                <p>Grand Child</p>
+                <p>{this.props.data}</p>
+            </div>
+        );
+    }
+}
+
+export default GrandChild;
+
+# kode App.js menjadi sbb:
+import './App.css';
+import Parent from './Component/Class/Parent';
+// import Home from './Component/Fungsional/Home';
+
+
+function App() {
+  return (
+    <div className="App">
+      <Parent />
+    </div>
+    
+  );
+}
+
+export default App;
+
+=========
+# PART 25 : CARA MEMASANG BOOTSTRAP CSS PADA REACT.JS 
+=========
+
+# instalasi bootstrap dan reactstrap sesuai panduan di reactstrap.github.io:
+npm install --save bootstrap 
+npm install --save reactstrap react react-dom 
+
+# PART 26: CARA MENGGUNAKAN COMPONENT REACSTRAP 
+# import bootstrap ke dalam index.js 
+
+# PART 27: CARA MENGGUNAKAN REACT ROUTER
+npm i react-router-dom
+# buat navbar
+# edit file App.js dengan menambahkan BrowserRouter, Switch, dan Route
+
+# PART 28: REACT ROUTER DENGAN PASSING DATA
+
+# PART 29: SETTING SERVER REST API DAN MENGATASI CORS error
+
+# PART 30: CARA MENGAMBIL (GET) DATA REST API
+# npm i querystring
+# npm install axios
+
+# PART 31: CARA POST DATA REST API 

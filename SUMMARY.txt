@@ -3,3 +3,73 @@ create-react-app --version
 create-react-app namaaplikasi
 cd namaaplikasi
 npm start
+
+# buat folder baru di dalam folder src dengan nama Component
+# buat folder Class dan Fungsional di dalam folder Component
+# buat file baru dengan nama Home.jsx di dalam folder Fungsional, dengan script berikut:
+
+import React from 'react'; // membaca react dari package.json
+
+const Home = () => { // membuat komponen dengan nama Home sesuaikan dengan nama filenya
+  return <div><h1>Hello World!</h1></div>  
+}
+
+export default Home;	
+
+# edit file App.js menjadi seperti berikut:
+import React from 'react'
+import './App.css'
+import Home from './Component/Fungsional/Home'
+
+function App() {
+  return (
+    <div className="App">
+      <Home />
+    </div>
+  )
+}
+
+# buat komponen baru dengan nama Beranda.jsx di dalam folder Class (menggunakan Class), dengan script berikut:
+
+import React from 'react'
+
+class Beranda extends React.Component {
+  render () {
+    return <div><h1>Ini adalah Beranda</h1></div>
+  }
+}
+
+export default Beranda;
+
+# tambahkan komponen Beranda pada file App.js, sehingga kodenya menjadi seperti berikut:
+import './App.css';
+import Beranda from './Component/Class/Beranda';
+import Home from './Component/Fungsional/Home';
+
+
+function App() {
+  return (
+    <div className="App">
+      <Home />
+    </div>
+    
+  );
+}
+
+export default App;
+
+# Buat file baru di folder Fungsional dengan nama Blog.jsx, berikut kodenya:
+
+import React from 'react'
+
+const Blog = () => {
+  return <div>
+  <img src="https://placeimg.com/640/480/tech" alt=""/>
+  <p>Tanggal Blog</p>
+  <p>Judul Blog</p>
+  <p>Summary Blog</p>
+  </div>
+}
+
+export default Blog
+
